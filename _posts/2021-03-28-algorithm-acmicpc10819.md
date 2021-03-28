@@ -6,7 +6,12 @@ categories:
 tags:
   - 알고리즘
   - 백준
+  - dfs
 ---
+
+### 문제 링크
+https://www.acmicpc.net/problem/10819
+
 ```java
 import java.io.BufferedReader;
 import java.io.IOException;
