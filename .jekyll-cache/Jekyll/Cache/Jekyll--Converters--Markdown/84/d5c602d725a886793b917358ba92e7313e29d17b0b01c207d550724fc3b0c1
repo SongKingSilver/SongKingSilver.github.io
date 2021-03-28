@@ -1,0 +1,68 @@
+I"V)<h3 id="문제-링크">문제 링크</h3>
+<p>https://www.acmicpc.net/problem/10819</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.StringTokenizer</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ex001_2</span> <span class="o">{</span>
+
+    <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">np</span><span class="o">(</span><span class="kt">int</span> <span class="n">numbers</span><span class="o">[],</span><span class="kt">int</span> <span class="no">N</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">//	1. 교차점 찾기 </span>
+            <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="no">N</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="c1">//	뒤쪽 부터 탐색하여 꼭대기(i) 찾기 </span>
+            <span class="k">while</span><span class="o">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">numbers</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">&gt;=</span> <span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="n">i</span><span class="o">--;</span>
+                
+        <span class="c1">//	i = 0이면 순열 생성 못함 </span>
+            <span class="k">if</span><span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+                
+        <span class="c1">//	2. 교차할 데이터의 위치 찾기 </span>
+            <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="no">N</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="c1">//	뒤쪽 부터 탐색하여 교환할 큰값(j) 찾기 </span>
+            <span class="k">while</span><span class="o">(</span><span class="n">numbers</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">&gt;=</span> <span class="n">numbers</span><span class="o">[</span><span class="n">j</span><span class="o">])</span>	<span class="n">j</span><span class="o">--;</span>
+                
+        <span class="c1">//	3. i-1 번째 데이터와 j번째 데이터 교환 (swap)</span>
+            <span class="n">swap</span><span class="o">(</span><span class="n">numbers</span><span class="o">,</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">,</span> <span class="n">j</span><span class="o">);</span>
+                
+        <span class="c1">//	4. 다음 순열을 위해서 교환후 꼭지점 이후는 (index)를 내림차순으로 </span>
+            <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="no">N</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+            <span class="k">while</span><span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">swap</span><span class="o">(</span><span class="n">numbers</span><span class="o">,</span> <span class="n">i</span><span class="o">++,</span> <span class="n">k</span><span class="o">--);</span>			
+            <span class="o">}</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="kd">static</span> <span class="kt">void</span> <span class="nf">swap</span><span class="o">(</span><span class="kt">int</span> <span class="n">numbers</span><span class="o">[],</span> <span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="kt">int</span> <span class="n">j</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+            <span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+            <span class="n">numbers</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getMax</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">;</span><span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="n">sum</span> <span class="o">+=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">-</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">]);</span>
+            <span class="o">}</span>
+            <span class="k">return</span> <span class="n">sum</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
+            <span class="nc">BufferedReader</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">InputStreamReader</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">));</span>
+            <span class="kt">int</span> <span class="no">N</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">in</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
+            <span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="no">N</span><span class="o">];</span>
+            <span class="nc">StringTokenizer</span> <span class="n">st</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringTokenizer</span><span class="o">(</span><span class="n">in</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
+            <span class="kt">int</span> <span class="n">max</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">N</span> <span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">st</span><span class="o">.</span><span class="na">nextToken</span><span class="o">());</span>
+            <span class="o">}</span>
+            
+            <span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span>
+            <span class="k">do</span> <span class="o">{</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">max</span> <span class="o">&lt;</span> <span class="n">getMax</span><span class="o">(</span><span class="n">arr</span><span class="o">))</span> <span class="n">max</span><span class="o">=</span><span class="n">getMax</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">while</span> <span class="o">(</span><span class="n">np</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span><span class="no">N</span><span class="o">));</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">max</span><span class="o">);</span>
+        <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+:ET
