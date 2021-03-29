@@ -9,9 +9,7 @@ tags:
   - bfs
 ---
 ### 문제 링크
-<a href=https://www.acmicpc.net/problem/2667>
-https://www.acmicpc.net/problem/2667
-</a>
+<https://www.acmicpc.net/problem/2667>
 
 ```java
 import java.util.ArrayList;

@@ -10,9 +10,7 @@ tags:
 ---
 
 ### 문제 링크
-<a href=https://www.acmicpc.net/problem/9663>
-https://www.acmicpc.net/problem/9663
-</a>
+<https://www.acmicpc.net/problem/9663>
 
 ```java
 import java.util.Scanner;

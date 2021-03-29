@@ -10,9 +10,8 @@ tags:
 ---
 
 ### 문제 링크
-<a href=https://www.acmicpc.net/problem/10819>
-https://www.acmicpc.net/problem/10819
-</a>
+<https://www.acmicpc.net/problem/10819>
+
 
 ```java
 import java.io.BufferedReader;
